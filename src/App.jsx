@@ -1,54 +1,50 @@
 import './App.css'
-import Button from './Button'
-import Footer from './Footer'
-import Header from './Header'
-import Peso from './Peso'
-import Principal from './Principal'
-import Skills from './Skills'
-import Status from './Status'
-import User from './User'
 
-
+const Number=({numbers})=>numbers.map(number=> <li key={number}>{number}</li>)
+const Skill= ({skill:[tech,level]})=>(<li>{tech} {level}</li>)
+const Skills=({skills})=>{
+  const skillsList=skills.map((skill)=><Skill key={skill[0]} skill={skill}/>)
+  return <ul>{skillsList}</ul>
+} 
+const Country=({country: {name,city}})=>{
+    return(
+      <div>
+        <h1>{name}</h1>
+        <small>{city}</small>
+      </div>
+    )
+}
+const Countries=({countries})=>{
+  const countryList=countries.map(country=><Country key={country.name} country={country}/>)
+  return <div>{countryList}</div>
+}
 function App() {
-  const gravedad=9.81
-  const masa=75
-  let edad=35
-  let status = edad >=18
-
-  const data={
-    bienvenida:'Bienvenidos a React ',
-    titulo:'Iniciando con react',
-    subtitulo:'React es una libreria de JavaScript',
-    autor:{
-      nombre:'Evolutech',
-      version:'JSE 11',
-      imagen:'https://rickandmortyapi.com/api/character/avatar/39.jpeg'
-    },
-    fecha: new Date(),
-    skills: ['HTML','CSS','JavaScript']
-  }
-  
-  const decirHola=()=>{
-    alert('Holaaa 😎')
-  }
-  const saludar=()=>{
-    alert('Bienvenidos a React con JavaScript 😎')
-  }
-  
+  const numbers=[1,2,3,4,5]
+  const skills=[
+    ['HTML',10],
+    ['CSS',7],
+    ['JavaScript',9],
+    ['React',8],
+  ]
+  const countries =[
+    {name:'Argentina', city:'Buenos Aires'},
+    {name:'Colombia', city:'Bogotá'},
+    {name:'Peru', city:'Lima'},
+    {name:'Chile', city:'Santiago de Chile'},
+    {name:'Bolivia', city:'Sucre'},
+  ]
   return (
     <>
-      <Header
-        data={data}
-      />
-      <User nombre='Evolutech' version='JSE 11' />
-      <Principal data={data} />
-      <Button text='Hola ' onClick={()=>alert('Hi!!!')}/>
-      <Button text='saludar ' onClick={saludar}/>
-      <Button text='Ver la fecha ' onClick={()=> alert(new Date())}/>
-      <Peso peso={gravedad*masa}/>
-      <Status status={status}/>
-      <Skills skills={['HTML','CSS','JavaScript']}/>
-      <Footer />
+    <div>
+      <h1>Number List</h1>
+      <ul>
+        <Number numbers={numbers}/>
+      </ul>
+      <h1>Skills List</h1>
+      <Skills skills={skills}/>
+      <h1>Countries List</h1>
+      <Countries countries={countries}/>
+    </div>
     </>
   )
 }
