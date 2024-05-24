@@ -2,7 +2,8 @@ import React from 'react'
 import TechList from './TechList'
 import UserCard from './UserCard'
 
-const Principal = ({skills}) => {
+const Principal = ({data}) => {
+  const {skills} =data
   return (
     <main>
       <div>
