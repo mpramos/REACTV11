@@ -1,26 +1,67 @@
 import { useState } from 'react'
 function App() {
-const [firstName,setFirstName]=useState('')
+  const initialState={
+    firstName:'',
+    lastName:'',
+    country:'',
+    title:'',
+  }
+const [formData,setData]=useState(initialState)
 
-const handleChange =(e)=>{
-  const value=e.target.value
-  setFirstName(value)
+const onChange=(e)=>{
+  const {name,value}=e.target
+  setData({...formData,[name]:value})
 }
-
+const onSubmit =(e)=>{
+  e.preventDefault()
+  console.log(formData);
+}
+const {firstName,lastName,country,title} = formData
   return (
     <>
-      <label htmlFor="firstName">First Name :</label>
-      <input 
-        type="text"
-        id='firstName'
-        name='firstName'
-        placeholder='First Name'
-        value={firstName} 
-        onChange={handleChange}
-        />
-        <h1>{firstName}</h1>
+    <div>
+      <h3>Add Student</h3>
+      <form onSubmit={onSubmit}>
+        <div>
+          <input 
+          type="text"
+          name='firstName'
+          placeholder='first Name'
+          value={firstName}
+          onChange={onChange}
+          />
+        </div>
+        <div>
+          <input 
+          type="text"
+          name='lastName'
+          placeholder='last Name'
+          value={lastName}
+          onChange={onChange}
+          />
+        </div>
+        <div>
+          <input 
+          type="text"
+          name='country'
+          placeholder='country'
+          value={country}
+          onChange={onChange}
+          />
+        </div>
+        <div>
+          <input 
+          type="text"
+          name='title'
+          placeholder='title'
+          value={title}
+          onChange={onChange}
+          />
+        </div>
+        <button >Submit</button>
+      </form>
+    </div>
     </>
   )
 }
-
 export default App
