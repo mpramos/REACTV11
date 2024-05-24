@@ -1,50 +1,34 @@
-import './App.css'
-
-const Number=({numbers})=>numbers.map(number=> <li key={number}>{number}</li>)
-const Skill= ({skill:[tech,level]})=>(<li>{tech} {level}</li>)
-const Skills=({skills})=>{
-  const skillsList=skills.map((skill)=><Skill key={skill[0]} skill={skill}/>)
-  return <ul>{skillsList}</ul>
-} 
-const Country=({country: {name,city}})=>{
-    return(
-      <div>
-        <h1>{name}</h1>
-        <small>{city}</small>
-      </div>
-    )
-}
-const Countries=({countries})=>{
-  const countryList=countries.map(country=><Country key={country.name} country={country}/>)
-  return <div>{countryList}</div>
-}
+import { useState } from 'react'
 function App() {
-  const numbers=[1,2,3,4,5]
-  const skills=[
-    ['HTML',10],
-    ['CSS',7],
-    ['JavaScript',9],
-    ['React',8],
-  ]
-  const countries =[
-    {name:'Argentina', city:'Buenos Aires'},
-    {name:'Colombia', city:'Bogotá'},
-    {name:'Peru', city:'Lima'},
-    {name:'Chile', city:'Santiago de Chile'},
-    {name:'Bolivia', city:'Sucre'},
-  ]
+  const [count,setCount]=useState(0)
+  const url='https://rickandmortyapi.com/api/character/avatar/41.jpeg'
+
+  const[image,setImage]=useState(url)
+
+  const changeCharacter=()=>{
+    let characterOne='https://rickandmortyapi.com/api/character/avatar/196.jpeg'
+    let characterTwo='https://rickandmortyapi.com/api/character/avatar/41.jpeg'
+    let result= image===characterOne ? characterTwo:characterOne
+    setImage(result)
+  }
+
+  const AddOne=()=>{
+    let value=count+1
+    setCount(value)
+  }
+  const MinusOne=()=>{
+    let value=count-1
+    setCount(value)
+  }
   return (
     <>
+    <h1>{count}</h1>
+    <button onClick={AddOne}>Add One</button>
+    <button onClick={MinusOne}>Minus One</button>
     <div>
-      <h1>Number List</h1>
-      <ul>
-        <Number numbers={numbers}/>
-      </ul>
-      <h1>Skills List</h1>
-      <Skills skills={skills}/>
-      <h1>Countries List</h1>
-      <Countries countries={countries}/>
+      <img src={image} alt="character" />
     </div>
+    <button onClick={changeCharacter}>Change</button>
     </>
   )
 }
