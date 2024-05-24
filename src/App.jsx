@@ -1,34 +1,24 @@
 import { useState } from 'react'
 function App() {
-  const [count,setCount]=useState(0)
-  const url='https://rickandmortyapi.com/api/character/avatar/41.jpeg'
+const [firstName,setFirstName]=useState('')
 
-  const[image,setImage]=useState(url)
+const handleChange =(e)=>{
+  const value=e.target.value
+  setFirstName(value)
+}
 
-  const changeCharacter=()=>{
-    let characterOne='https://rickandmortyapi.com/api/character/avatar/196.jpeg'
-    let characterTwo='https://rickandmortyapi.com/api/character/avatar/41.jpeg'
-    let result= image===characterOne ? characterTwo:characterOne
-    setImage(result)
-  }
-
-  const AddOne=()=>{
-    let value=count+1
-    setCount(value)
-  }
-  const MinusOne=()=>{
-    let value=count-1
-    setCount(value)
-  }
   return (
     <>
-    <h1>{count}</h1>
-    <button onClick={AddOne}>Add One</button>
-    <button onClick={MinusOne}>Minus One</button>
-    <div>
-      <img src={image} alt="character" />
-    </div>
-    <button onClick={changeCharacter}>Change</button>
+      <label htmlFor="firstName">First Name :</label>
+      <input 
+        type="text"
+        id='firstName'
+        name='firstName'
+        placeholder='First Name'
+        value={firstName} 
+        onChange={handleChange}
+        />
+        <h1>{firstName}</h1>
     </>
   )
 }
