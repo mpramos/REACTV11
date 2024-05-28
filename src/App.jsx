@@ -34,21 +34,63 @@ function App() {
     skills:{
       html:false,
       css:false,
-      javascript
+      javascript:false
     }
   }
-  const [formDate,setFormData]=useState(initialState)
-  const {firstName,lastName,title,country,email,tel,dateOfBirth,favoriteColor,weight,gender,bio}=formDate
+  const [formData,setData]=useState(initialState)
+  const onChange=(e)=>{
+      const {name,value}=e.target
+      setData({...formData,[name]:value})
+  }
+
+  const onSubmit=(e)=>{
+      e.preventDefault()
+      console.log(formData)
+  }
+
+  const {firstName,lastName,title,country}=formData
     return (
     <>
     <div>
       <h3>Add Student</h3>
       <form onSubmit={onSubmit}>
-      <label htmlFor="firstName">First Name</label>
+      <div>
       <input 
-      type="text"
-      name='firstName'
+        type="text"
+        name='firstName'
+        placeholder='First Name'
+        value={firstName}
+        onChange={onChange}
       />
+      </div>
+      <div>
+      <input 
+        type="text"
+        name='lastName'
+        placeholder='last Name'
+        value={lastName}
+        onChange={onChange}
+      />
+      </div>
+      <div>
+      <input 
+        type="text"
+        name='country'
+        placeholder='Country'
+        value={country}
+        onChange={onChange}
+      />
+      </div>
+      <div>
+      <input 
+        type="text"
+        name='title'
+        placeholder='title'
+        value={title}
+        onChange={onChange}
+      />
+      </div>
+      <button > Submit</button>
       </form>
     </div>
 
