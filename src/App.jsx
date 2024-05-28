@@ -6,20 +6,23 @@ import ProfilePage from './ProfilePage'
 import Menu from './Menu'
 import Lista from './Lista'
 import Usuario from './assets/Usuario'
+import { ThemeProvider } from './ThemeContext'
+import ThemeButton from './ThemeButton'
 
 function App() {
-  const [count,setCount]=useState(0)
-useEffect(()=>{
-console.log(`El contador ha cambiado a :${count}`);  
-},[count])
 
 return(
-<>
-<p>Tu clickeaste {count} veces</p>
-<button onClick={()=>setCount(count+1)}>Click Me</button>
-<Lista/>
-<Usuario/>
-</> 
+<ThemeProvider>
+  <ThemeButton/>
+  <ThemeButton/>
+  <ThemeButton/>
+  <ThemeButton/>
+  <ThemeButton/>
+  <ThemeButton/>
+  <ThemeButton/>
+  <ThemeButton/>
+  <ThemeButton/>
+</ThemeProvider>
 )  
 }
 export default App
