@@ -1,100 +1,23 @@
 import { useState } from 'react'
+import { HashRouter, Routes, Route } from 'react-router-dom'
+import HomePage from './HomePage'
+import BlogPage from './BlogPage'
+import ProfilePage from './ProfilePage'
+import Menu from './Menu'
+
 function App() {
-  const options=[
-    {
-      value:'',
-      label: '--Select Country--'
-    },
-    {
-      value:'Argentina',
-      label: 'Argentina'
-    },
-    {
-      value:'Perú',
-      label: 'Perú'
-    },
-    {
-      value:'Colombia',
-      label: 'Colombia'
-    }
-  ]
-  const initialState={
-    firstName:'',
-    lastName:'',
-    email:'',
-    title:'',
-    country:'',
-    tel:'',
-    dateOfBirth:'',
-    favoriteColor:'',
-    weight:'',
-    gender:'',
-    file:'',
-    bio:'',
-    skills:{
-      html:false,
-      css:false,
-      javascript:false
-    }
-  }
-  const [formData,setData]=useState(initialState)
-  const onChange=(e)=>{
-      const {name,value}=e.target
-      setData({...formData,[name]:value})
-  }
-
-  const onSubmit=(e)=>{
-      e.preventDefault()
-      console.log(formData)
-  }
-
-  const {firstName,lastName,title,country}=formData
-    return (
-    <>
-    <div>
-      <h3>Add Student</h3>
-      <form onSubmit={onSubmit}>
-      <div>
-      <input 
-        type="text"
-        name='firstName'
-        placeholder='First Name'
-        value={firstName}
-        onChange={onChange}
-      />
-      </div>
-      <div>
-      <input 
-        type="text"
-        name='lastName'
-        placeholder='last Name'
-        value={lastName}
-        onChange={onChange}
-      />
-      </div>
-      <div>
-      <input 
-        type="text"
-        name='country'
-        placeholder='Country'
-        value={country}
-        onChange={onChange}
-      />
-      </div>
-      <div>
-      <input 
-        type="text"
-        name='title'
-        placeholder='title'
-        value={title}
-        onChange={onChange}
-      />
-      </div>
-      <button > Submit</button>
-      </form>
-    </div>
-
-    </>
-  )
+return(
+  <>
+  <HashRouter>
+    <Menu/>
+  <Routes>
+    <Route path='/' element={<HomePage/>  }/>
+    <Route path='/blog' element={<BlogPage/> }/>
+    <Route path='/profile' element={<ProfilePage/> }/>
+    <Route path='/*' element={<p>Not found</p>}/>
+  </Routes>
+  </HashRouter>
+  </>
+)  
 }
 export default App
